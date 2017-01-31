@@ -23,6 +23,7 @@ public class TopicOverviewActivity extends AppCompatActivity {
                 Intent intent = new Intent(TopicOverviewActivity.this, QuestionActivity.class);
                 intent.putExtra("questionsAnswered", 3);
                 startActivity(intent);
+                finish();
             }
         });
     }

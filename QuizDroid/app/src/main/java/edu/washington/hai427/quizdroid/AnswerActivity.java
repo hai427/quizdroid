@@ -35,6 +35,7 @@ public class AnswerActivity extends AppCompatActivity {
 
                 intent.putExtra("questionsAnswered", questionsAnswered - 1);
                 startActivity(intent);
+                finish();
             }
         });
     }
