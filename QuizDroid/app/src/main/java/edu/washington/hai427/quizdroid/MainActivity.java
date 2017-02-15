@@ -15,8 +15,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        QuizApp quizApp = (QuizApp) getApplication();
+
         String[] topics = new String[]{
-                "Math", "Science", "Marvel Heroes"
+                quizApp.topicRepo.topics[0].title, quizApp.topicRepo.topics[1].title, quizApp.topicRepo.topics[2].title
         };
 
         ListView listView = (ListView)findViewById(R.id.listView);
