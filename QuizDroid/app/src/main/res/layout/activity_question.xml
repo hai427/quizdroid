@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.washington.hai427.quizdroid.QuestionActivity">
+    tools:context="edu.washington.hai427.quizdroid.QuestionFragment">
 
 
     <LinearLayout
@@ -33,29 +33,25 @@
             android:text="Question One"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/questionOne"
-            android:onClick="onRadioButtonClicked"/>
+            android:id="@+id/questionOne"/>
 
         <RadioButton
             android:text="Question Two"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/questionTwo"
-            android:onClick="onRadioButtonClicked"/>
+            android:id="@+id/questionTwo"/>
 
         <RadioButton
             android:text="Question Three"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/questionThree"
-            android:onClick="onRadioButtonClicked"/>
+            android:id="@+id/questionThree"/>
 
         <RadioButton
             android:text="Question Four"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/questionFour"
-            android:onClick="onRadioButtonClicked"/>
+            android:id="@+id/questionFour"/>
 
         </RadioGroup>
 

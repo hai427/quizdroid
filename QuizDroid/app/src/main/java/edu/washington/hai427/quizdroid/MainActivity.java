@@ -15,8 +15,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        QuizApp quizApp = (QuizApp) getApplication();
+
         String[] topics = new String[]{
-                "Math", "Science", "Marvel Heroes"
+                quizApp.topicRepo.topics[0].title, quizApp.topicRepo.topics[1].title, quizApp.topicRepo.topics[2].title
         };
 
         ListView listView = (ListView)findViewById(R.id.listView);
@@ -29,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, TopicOverviewActivity.class);
+                Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+                intent.putExtra("Position", position);
                 startActivity(intent);
             }
         });
