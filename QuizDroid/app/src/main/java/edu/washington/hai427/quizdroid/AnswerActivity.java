@@ -26,16 +26,16 @@ public class AnswerActivity extends AppCompatActivity {
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
-                if (questionsAnswered == 0) {
-                    intent = new Intent(AnswerActivity.this, MainActivity.class);
-                } else {
-                    intent = new Intent(AnswerActivity.this, QuestionActivity.class);
-                }
+            Intent intent;
+            if (questionsAnswered == 0) {
+                intent = new Intent(AnswerActivity.this, MainActivity.class);
+            } else {
+                intent = new Intent(AnswerActivity.this, QuestionActivity.class);
+            }
 
-                intent.putExtra("questionsAnswered", questionsAnswered - 1);
-                startActivity(intent);
-                finish();
+            intent.putExtra("questionsAnswered", questionsAnswered - 1);
+            startActivity(intent);
+            finish();
             }
         });
     }
