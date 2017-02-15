@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import static edu.washington.hai427.quizdroid.R.id.correctAnswer;
 
 
 public class AnswerFragment extends Fragment {
@@ -22,7 +25,26 @@ public class AnswerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Topic topic = ((QuizActivity) getActivity()).topic;
+
         View v = inflater.inflate(R.layout.activity_answer, container, false);
+
+        TextView givenAnswer = (TextView) v.findViewById(R.id.givenAnswer);
+        TextView rightAnswer = (TextView) v.findViewById(correctAnswer);
+        TextView score = (TextView) v.findViewById(R.id.score);
+
+        givenAnswer.setText("Given Answer: " + topic.questions[getArguments().getInt("questionsAnswered")]
+                .answers[getArguments().getInt("answer")]);
+        rightAnswer.setText("Correct Answer: " + topic.questions[getArguments().getInt("questionsAnswered")]
+                .answers[topic.questions[getArguments().getInt("questionsAnswered")].correctAnswer]);
+
+        if(givenAnswer.getText().equals(rightAnswer.getText())) {
+            score.setText("Score: " + getArguments().getInt("score") + 1);
+            Bundle bundle = getArguments();
+            bundle.putInt("score", getArguments().getInt("score") + 1);
+        } else {
+            score.setText("Score: " + getArguments().getInt("score"));
+        }
 
         final int questionsAnswered = getArguments().getInt("questionsAnswered", 0);
         Button finish;

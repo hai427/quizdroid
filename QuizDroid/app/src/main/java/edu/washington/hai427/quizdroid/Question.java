@@ -6,19 +6,17 @@ package edu.washington.hai427.quizdroid;
 
 public class Question {
     String text;
-    String answerOne;
-    String answerTwo;
-    String answerThree;
-    String answerFour;
+    String[] answers;
     int correctAnswer;
 
     public Question(String text, String answerOne, String answerTwo, String answerThree,
                     String answerFour, int correctAnswer) {
         this.text = text;
-        this.answerOne = answerOne;
-        this.answerTwo = answerTwo;
-        this.answerThree = answerThree;
-        this.answerFour = answerFour;
+        this.answers = new String[4];
+        answers[0] = answerOne;
+        answers[1] = answerTwo;
+        answers[2] = answerThree;
+        answers[3] = answerFour;
         this.correctAnswer = correctAnswer;
     }
 }

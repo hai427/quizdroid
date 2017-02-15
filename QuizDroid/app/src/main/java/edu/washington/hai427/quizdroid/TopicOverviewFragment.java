@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -25,7 +26,16 @@ public class TopicOverviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Topic topic = ((QuizActivity) getActivity()).topic;
+
         View v = inflater.inflate(R.layout.activity_topic_overview, container, false);
+        TextView title = (TextView) v.findViewById(R.id.name);
+        TextView description = (TextView) v.findViewById(R.id.description);
+        TextView numberOfQuestions = (TextView) v.findViewById(R.id.numberOfQuestions);
+
+        title.setText(topic.title);
+        description.setText(topic.longDesc);
+        numberOfQuestions.setText(topic.questions.length + "");
 
         Button begin;
 
@@ -37,6 +47,8 @@ public class TopicOverviewFragment extends Fragment {
                 Fragment questionFragment = new QuestionFragment();
 
                 questionFragment.setArguments(getArguments());
+                Bundle bundle = (Bundle) getArguments();
+                bundle.putInt("score", 0);
 
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

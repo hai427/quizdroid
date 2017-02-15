@@ -21,6 +21,7 @@ import android.widget.RadioGroup;
 public class QuestionFragment extends Fragment {
 
     private static final String TAG = "question";
+    int selected;
 
     public QuestionFragment() {
         // Required empty public constructor
@@ -30,6 +31,7 @@ public class QuestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Topic topic = ((QuizActivity) getActivity()).topic;
 
         View v = inflater.inflate(R.layout.activity_question, container, false);
 
@@ -37,7 +39,11 @@ public class QuestionFragment extends Fragment {
         submitButton.setEnabled(false);
         submitButton.setClickable(false);
 
-        RadioGroup radioGroup = (RadioGroup) v.findViewById(R.id.radioGroup);
+        final RadioGroup radioGroup = (RadioGroup) v.findViewById(R.id.radioGroup);
+        for (int i=0; i<4; i++) {
+            RadioButton button = (RadioButton) radioGroup.getChildAt(i);
+            button.setText(topic.questions[getArguments().getInt("questionsAnswered")].answers[i] + "");
+        }
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -49,12 +55,16 @@ public class QuestionFragment extends Fragment {
                 switch(checkedId) {
                     case R.id.questionOne:
                         Log.i(TAG, "Submitting 1");
+                        selected = 0;
                     case R.id.questionTwo:
                         Log.i(TAG, "Submitting 2");
+                        selected = 1;
                     case R.id.questionThree:
                         Log.i(TAG, "Submitting 3");
+                        selected = 2;
                     case R.id.questionFour:
-                        Log.i(TAG, "Submitting 4");;
+                        Log.i(TAG, "Submitting 4");
+                        selected = 3;
                 }
             }
         });
@@ -64,7 +74,9 @@ public class QuestionFragment extends Fragment {
             public void onClick(View v) {
                 Fragment answerFragment = new AnswerFragment();
 
-                answerFragment.setArguments(getArguments());
+                Bundle bundle = getArguments();
+                bundle.putInt("answer", selected);
+                answerFragment.setArguments(bundle);
 
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
