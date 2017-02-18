@@ -42,7 +42,7 @@ public class QuestionFragment extends Fragment {
         final RadioGroup radioGroup = (RadioGroup) v.findViewById(R.id.radioGroup);
         for (int i=0; i<4; i++) {
             RadioButton button = (RadioButton) radioGroup.getChildAt(i);
-            button.setText(topic.questions[getArguments().getInt("questionsAnswered")].answers[i] + "");
+            button.setText(topic.questions.get(getArguments().getInt("questionsAnswered")).answers.get(i) + "");
         }
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

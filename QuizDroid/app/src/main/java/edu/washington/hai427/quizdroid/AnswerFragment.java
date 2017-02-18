@@ -33,10 +33,10 @@ public class AnswerFragment extends Fragment {
         TextView rightAnswer = (TextView) v.findViewById(correctAnswer);
         TextView score = (TextView) v.findViewById(R.id.score);
 
-        givenAnswer.setText("Given Answer: " + topic.questions[getArguments().getInt("questionsAnswered")]
-                .answers[getArguments().getInt("answer")]);
-        rightAnswer.setText("Correct Answer: " + topic.questions[getArguments().getInt("questionsAnswered")]
-                .answers[topic.questions[getArguments().getInt("questionsAnswered")].correctAnswer]);
+        givenAnswer.setText("Given Answer: " + topic.questions.get(getArguments().getInt("questionsAnswered"))
+                .answers.get(getArguments().getInt("answer")));
+        rightAnswer.setText("Correct Answer: " + topic.questions.get(getArguments().getInt("questionsAnswered"))
+                .answers.get(topic.questions.get(getArguments().getInt("questionsAnswered")).correctAnswer));
 
         if(givenAnswer.getText().equals(rightAnswer.getText())) {
             score.setText("Score: " + getArguments().getInt("score") + 1);
