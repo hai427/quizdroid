@@ -1,22 +1,23 @@
 package edu.washington.hai427.quizdroid;
 
+import java.util.ArrayList;
+
 /**
  * Created by Hai on 2/14/2017.
  */
 
 public class Question {
     String text;
-    String[] answers;
+    ArrayList<String> answers;
     int correctAnswer;
 
-    public Question(String text, String answerOne, String answerTwo, String answerThree,
-                    String answerFour, int correctAnswer) {
+    public Question(String text, int correctAnswer) {
         this.text = text;
-        this.answers = new String[4];
-        answers[0] = answerOne;
-        answers[1] = answerTwo;
-        answers[2] = answerThree;
-        answers[3] = answerFour;
         this.correctAnswer = correctAnswer;
+        this.answers = new ArrayList<String>();
+    }
+
+    public void addAnswer(String answer) {
+        answers.add(answer);
     }
 }

@@ -6,6 +6,8 @@ import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.io.File;
+
 public class QuizActivity extends AppCompatActivity {
     Topic topic;
 
@@ -18,10 +20,10 @@ public class QuizActivity extends AppCompatActivity {
 
         QuizApp quizApp = (QuizApp) getApplication();
 
-        topic = quizApp.topicRepo.topics[position];
+        topic = quizApp.topicRepo.topics.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("questionsAnswered", 3);
+        bundle.putInt("questionsAnswered", topic.questions.size() - 1);
 
         Fragment topicOverviewFragment = new TopicOverviewFragment();
 

@@ -35,7 +35,7 @@ public class TopicOverviewFragment extends Fragment {
 
         title.setText(topic.title);
         description.setText(topic.longDesc);
-        numberOfQuestions.setText(topic.questions.length + "");
+        numberOfQuestions.setText(topic.questions.size() + "");
 
         Button begin;
 
