@@ -22,7 +22,8 @@
         <TextView
             android:text="Question:"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/question"/>
 
         <RadioGroup
             android:layout_width="match_parent"

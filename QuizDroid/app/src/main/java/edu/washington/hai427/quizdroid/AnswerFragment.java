@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import static edu.washington.hai427.quizdroid.R.id.correctAnswer;
 
 
 public class AnswerFragment extends Fragment {
+
+    private static final String TAG = "AnswerFragment";
 
     public AnswerFragment() {
         // Required empty public constructor
@@ -33,13 +36,15 @@ public class AnswerFragment extends Fragment {
         TextView rightAnswer = (TextView) v.findViewById(correctAnswer);
         TextView score = (TextView) v.findViewById(R.id.score);
 
-        givenAnswer.setText("Given Answer: " + topic.questions.get(getArguments().getInt("questionsAnswered"))
-                .answers.get(getArguments().getInt("answer")));
-        rightAnswer.setText("Correct Answer: " + topic.questions.get(getArguments().getInt("questionsAnswered"))
-                .answers.get(topic.questions.get(getArguments().getInt("questionsAnswered")).correctAnswer));
+        int correctAnswer = topic.questions.get(getArguments().getInt("questionsAnswered")).correctAnswer;
+        int currentQuestion = getArguments().getInt("questionsAnswered");
 
-        if(givenAnswer.getText().equals(rightAnswer.getText())) {
-            score.setText("Score: " + getArguments().getInt("score") + 1);
+        givenAnswer.setText("Given Answer: " + topic.questions.get(currentQuestion).answers.get(getArguments().getInt("answer")));
+        rightAnswer.setText("Correct Answer: " + topic.questions.get(currentQuestion).answers.get(correctAnswer - 1));
+
+        if(topic.questions.get(currentQuestion).answers.get(getArguments().getInt("answer")).
+                equals(topic.questions.get(currentQuestion).answers.get(correctAnswer - 1))) {
+            score.setText("Score: " + (getArguments().getInt("score") + 1));
             Bundle bundle = getArguments();
             bundle.putInt("score", getArguments().getInt("score") + 1);
         } else {

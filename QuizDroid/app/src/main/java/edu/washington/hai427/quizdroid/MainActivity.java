@@ -88,21 +88,24 @@ public class MainActivity extends AppCompatActivity {
                 for (int i=0; i<topics.length(); i++) {
                     JSONObject topic = topics.getJSONObject(i);
                     String title = topic.getString("title");
-                    String desc = topic.getString("desc");
-                    JSONArray questions = topic.getJSONArray("questions");
-                    Topic newTopic = new Topic(title, desc, desc);
-                    for (int j=0; j<questions.length(); j++) {
-                        JSONObject question = questions.getJSONObject(j);
-                        String text = question.getString("text");
-                        int answer = question.getInt("answer");
-                        JSONArray answers = question.getJSONArray("answers");
-                        Question newQuestion = new Question(text, answer);
-                        for (int k=0; k<answers.length(); k++) {
-                            String newAnswer = answers.getString(k);
-                            newQuestion.addAnswer(newAnswer);
+                    if(!topicRepoExist(topicRepo, title)) {
+                        String desc = topic.getString("desc");
+                        JSONArray questions = topic.getJSONArray("questions");
+                        Topic newTopic = new Topic(title, desc, desc);
+                        for (int j=0; j<questions.length(); j++) {
+                            JSONObject question = questions.getJSONObject(j);
+                            String text = question.getString("text");
+                            int answer = question.getInt("answer");
+                            JSONArray answers = question.getJSONArray("answers");
+                            Question newQuestion = new Question(text, answer);
+                            for (int k=0; k<answers.length(); k++) {
+                                String newAnswer = answers.getString(k);
+                                newQuestion.addAnswer(newAnswer);
+                            }
+                            newTopic.addQuestion(newQuestion);
                         }
+                        topicRepo.addTopic(newTopic);
                     }
-                    topicRepo.addTopic(newTopic);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -138,5 +141,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public boolean topicRepoExist(TopicRepository topicRepo, String title) {
+        for(int i=0; i<topicRepo.topics.size(); i++) {
+            if(topicRepo.topics.get(i).title.equals(title)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

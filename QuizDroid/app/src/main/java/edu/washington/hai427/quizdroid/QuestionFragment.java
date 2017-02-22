@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 
 /**
@@ -38,6 +39,8 @@ public class QuestionFragment extends Fragment {
         final Button submitButton = (Button) v.findViewById(R.id.submit);
         submitButton.setEnabled(false);
         submitButton.setClickable(false);
+        TextView question = (TextView) v.findViewById(R.id.question);
+        question.setText(topic.questions.get(getArguments().getInt("questionsAnswered")).text);
 
         final RadioGroup radioGroup = (RadioGroup) v.findViewById(R.id.radioGroup);
         for (int i=0; i<4; i++) {
@@ -56,15 +59,19 @@ public class QuestionFragment extends Fragment {
                     case R.id.questionOne:
                         Log.i(TAG, "Submitting 1");
                         selected = 0;
+                        break;
                     case R.id.questionTwo:
                         Log.i(TAG, "Submitting 2");
                         selected = 1;
+                        break;
                     case R.id.questionThree:
                         Log.i(TAG, "Submitting 3");
                         selected = 2;
+                        break;
                     case R.id.questionFour:
                         Log.i(TAG, "Submitting 4");
                         selected = 3;
+                        break;
                 }
             }
         });

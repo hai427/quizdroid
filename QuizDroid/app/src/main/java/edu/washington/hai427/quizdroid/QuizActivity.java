@@ -23,7 +23,7 @@ public class QuizActivity extends AppCompatActivity {
         topic = quizApp.topicRepo.topics.get(position);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("questionsAnswered", 3);
+        bundle.putInt("questionsAnswered", topic.questions.size() - 1);
 
         Fragment topicOverviewFragment = new TopicOverviewFragment();
 
